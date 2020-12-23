@@ -40,7 +40,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it must be on first place to allow central setting of working directory
       - uses: actions/checkout@v2
       - name: Get Branch name
-        uses: RalfNellesCap@composite_action_dockertag
+        uses: RalfNellesCap/composite_action_dockertag@v1
       - name: Echo DOCKER_TAG_POSTFIX
         run: echo "DOCKER_TAG_POSTFIX is ${DOCKER_TAG_POSTFIX}"
       - name: Set up QEMU

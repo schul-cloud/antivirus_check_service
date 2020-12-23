@@ -72,7 +72,7 @@ jobs:
           echo "BRANCH_PREFIX is ${{ steps.branch_prefix.outputs.group1 }}"
           echo BRANCH_PREFIX=${{ steps.branch_prefix.outputs.group1 }} >> $GITHUB_ENV
       - name: Get Dockertags for branch
-        uses: RalfNellesCap/composite_action_dockertag@v1.0.4
+        uses: RalfNellesCap/composite_action_dockertag
       - name: cancel workflow if Dockertag is empty String
         # if: ${{ env.DOCKER_TAG_POSTFIX == '' }}
         uses: andymckay/cancel-action@0.2        

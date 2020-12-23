@@ -72,9 +72,19 @@ jobs:
           echo "BRANCH_PREFIX is ${{ steps.branch_prefix.outputs.group1 }}"
           echo BRANCH_PREFIX=${{ steps.branch_prefix.outputs.group1 }} >> $GITHUB_ENV
       - name: Get Dockertags for branch
-        uses: RalfNellesCap/composite_action_dockertag@v1.0.4
+        id: tag
+        uses: RalfNellesCap/composite_action_dockertag@v1.0.5
+        with:
+          AVCHECK_VERSION: ${{ env.AVCHECK_VERSION }}
+          GIT_SHA: ${{ env.GITHUB_SHA }}
+          JIRA_TicketID: ${{ env.JIRA_TicketID }}
+          BRANCH_PREFIX: ${{ env.BRANCH_PREFIX }}
+      - name: Set Env Vars for Dockertags
+        run: |
+          echo DOCKER_TAG_POSTFIX=${{ steps.tag.outputs.docker-tag }} >> $GITHUB_ENV
+          echo DOCKER_TAG_SHA=${{ steps.tag.outputs.docker-sha }} >> $GITHUB_ENV
       - name: cancel workflow if Dockertag is empty String
-        # if: ${{ env.DOCKER_TAG_POSTFIX == '' }}
+        if: ${{ env.DOCKER_TAG_POSTFIX == '' }}
         uses: andymckay/cancel-action@0.2        
       - name: Echo DOCKER_TAG_POSTFIX
         run: echo "DOCKER_TAG_POSTFIX is ${DOCKER_TAG_POSTFIX}"

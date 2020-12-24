@@ -79,6 +79,10 @@ jobs:
           GIT_SHA: ${{ env.GITHUB_SHA }}
           JIRA_TicketID: ${{ env.JIRA_TicketID }}
           BRANCH_PREFIX: ${{ env.BRANCH_PREFIX }}
+      - name: return values action
+        run: |
+          echo "Dockertag:${{ steps.tag.outputs.docker-tag }}"
+          echo "SHA_tag=${{ steps.tag.outputs.docker-sha }}"
       - name: Set Env Vars for Dockertags
         run: |
           echo DOCKER_TAG_POSTFIX=${{ steps.tag.outputs.docker-tag }} >> $GITHUB_ENV

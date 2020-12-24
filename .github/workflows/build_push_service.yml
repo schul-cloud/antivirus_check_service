@@ -73,7 +73,7 @@ jobs:
           echo BRANCH_PREFIX=${{ steps.branch_prefix.outputs.group1 }} >> $GITHUB_ENV
       - name: Get Dockertags for branch
         id: tag
-        uses: RalfNellesCap/composite_action_dockertag@v1.0.14
+        uses: RalfNellesCap/composite_action_dockertag@v1.0.15
         with:
           AVCHECK_VERSION: ${{ env.AVCHECK_VERSION }}
           GIT_SHA: ${{ env.GITHUB_SHA }}

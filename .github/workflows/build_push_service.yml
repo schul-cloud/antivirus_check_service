@@ -73,7 +73,7 @@ jobs:
           echo BRANCH_PREFIX=${{ steps.branch_prefix.outputs.group1 }} >> $GITHUB_ENV
       - name: Get Dockertags for branch
         id: tag
-        uses: RalfNellesCap/composite_action_dockertag@v1.0.13
+        uses: RalfNellesCap/composite_action_dockertag@v1.0.14
         with:
           AVCHECK_VERSION: ${{ env.AVCHECK_VERSION }}
           GIT_SHA: ${{ env.GITHUB_SHA }}
@@ -90,7 +90,7 @@ jobs:
       - name: Echo DOCKER_TAG_POSTFIX
         run: echo "DOCKER_TAG_POSTFIX is ${DOCKER_TAG_POSTFIX}"
       - name: cancel workflow if Dockertag is empty String
-        if: ${{ env.DOCKER_TAG_POSTFIX == '' }}
+        # if: ${{ env.DOCKER_TAG_POSTFIX == '' }}
         uses: andymckay/cancel-action@0.2     
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1

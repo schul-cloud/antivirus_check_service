@@ -28,6 +28,7 @@ jobs:
       AVSCANURL_REPO: schulcloud-avcheck-scanurl
       AVSCANWEBSERVER_REPO: schulcloud-avcheck-webserver
       DOCKER_NAMESPACE: schulcloud
+      GIT_SHA: ${env.GITHUB_SHA}
       BRANCH_NAME: ""
       AVCHECK_VERSION: ""
       DOCKER_TAG_POSTFIX: ""
@@ -73,9 +74,7 @@ jobs:
           echo BRANCH_PREFIX=${{ steps.branch_prefix.outputs.group1 }} >> $GITHUB_ENV
       - name: Get Dockertags for branch
         id: tag
-        uses: RalfNellesCap/composite_action_dockertag@v1.0.21
-        with:
-          GIT_SHA: ${{ env.GITHUB_SHA }}
+        uses: RalfNellesCap/composite_action_dockertag@v1.0.23
       - name: Set Env Vars for Dockertags
         run: |
           echo DOCKER_TAG_POSTFIX=${{ steps.tag.outputs.docker-tag }} >> $GITHUB_ENV

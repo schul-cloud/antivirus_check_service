@@ -46,6 +46,10 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: ./version
+      - name: Set local job env var GIT_SHA
+        run: |
+          echo "GIT_SHA is ${env.GITHUB_SHA}"
+          echo GIT_SHA=${env.GITHUB_SHA} >> $GITHUB_ENV
       - name: Set env AVCHECK_VERSION
         run: |
           echo "Version of antivirus_service is ${{ steps.read_version.outputs.content }}"
@@ -72,10 +76,6 @@ jobs:
         run: |
           echo "BRANCH_PREFIX is ${{ steps.branch_prefix.outputs.group1 }}"
           echo BRANCH_PREFIX=${{ steps.branch_prefix.outputs.group1 }} >> $GITHUB_ENV
-      - name: Set local job env var GIT_SHA
-        run: |
-          echo "GIT_SHA is ${{ env.GITHUB_SHA }}"
-          echo GIT_SHA=${{ env.GITHUB_SHA }} >> $GITHUB_ENV
       - name: Get Dockertags for branch
         id: tag
         uses: RalfNellesCap/composite_action_dockertag@v1.0.23

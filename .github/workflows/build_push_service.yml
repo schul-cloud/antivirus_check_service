@@ -28,7 +28,7 @@ jobs:
       AVSCANURL_REPO: schulcloud-avcheck-scanurl
       AVSCANWEBSERVER_REPO: schulcloud-avcheck-webserver
       DOCKER_NAMESPACE: schulcloud
-      GIT_SHA: ${env.GITHUB_SHA}
+      GIT_SHA: ${{ env.GITHUB_SHA }}
       BRANCH_NAME: ""
       AVCHECK_VERSION: ""
       DOCKER_TAG_POSTFIX: ""

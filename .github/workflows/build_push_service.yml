@@ -48,7 +48,7 @@ jobs:
           path: ./version
       - name: Set local job env var GIT_SHA
         run: |
-          echo "GIT_SHA is ${env.GITHUB_SHA}"
+          echo ${env.GITHUB_SHA}
           echo GIT_SHA=${env.GITHUB_SHA} >> $GITHUB_ENV
       - name: Set env AVCHECK_VERSION
         run: |

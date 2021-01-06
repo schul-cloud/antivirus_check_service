@@ -46,14 +46,14 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: ./version
-      - name: Set local job env var GIT_SHA
-        run: |
-          echo $GITHUB_SHA
-          echo GIT_SHA=$GITHUB_SHA >> $GITHUB_ENV
       - name: Set env AVCHECK_VERSION
         run: |
           echo "Version of antivirus_service is ${{ steps.read_version.outputs.content }}"
           echo "AVCHECK_VERSION=${{ steps.read_version.outputs.content }}" >> $GITHUB_ENV
+      - name: Set local job env var GIT_SHA
+        run: |
+          echo $GITHUB_SHA
+          echo GIT_SHA=$GITHUB_SHA >> $GITHUB_ENV
       - name: RegEx JIRA ticket ID
         uses: actions-ecosystem/action-regex-match@v2
         id: jira
@@ -78,7 +78,7 @@ jobs:
           echo BRANCH_PREFIX=${{ steps.branch_prefix.outputs.group1 }} >> $GITHUB_ENV
       - name: Get Dockertags for branch
         id: tag
-        uses: RalfNellesCap/composite_action_dockertag@v1.0.23
+        uses: RalfNellesCap/composite_action_dockertag@v1.0.24
       - name: Set Env Vars for Dockertags
         run: |
           echo DOCKER_TAG_POSTFIX=${{ steps.tag.outputs.docker-tag }} >> $GITHUB_ENV
